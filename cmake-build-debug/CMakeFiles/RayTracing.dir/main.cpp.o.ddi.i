@@ -81583,6 +81583,7 @@ class Vector3D {
       return std::sqrt((this->val[0]*this->val[0]) + (this->val[1]*this->val[1]) + (this->val[2]*this->val[2]));
     }
 };
+using point3 = Vector3D;
 
 std::ostream& operator<<(std::ostream &os, const Vector3D &v) {
   os << "x: "<< v.val[0] << " y: " << v.val[1] << " z: " << v.val[2];
@@ -81650,23 +81651,144 @@ void writeColor(std::ostream& os, const color& pixelColor) {
 # 3 "/home/mwizzard/RayTracing/main.cpp" 2
 # 1 "/home/mwizzard/RayTracing/Vector3D.h" 1
 # 4 "/home/mwizzard/RayTracing/main.cpp" 2
+# 1 "/home/mwizzard/RayTracing/Ray.h" 1
+
+
+
+# 1 "/home/mwizzard/RayTracing/Vector3D.h" 1
+# 5 "/home/mwizzard/RayTracing/Ray.h" 2
+
+
+class Ray {
+private:
+    point3 origin;
+    Vector3D direction;
+  public:
+
+    Ray(){};
+
+    Ray(const Vector3D& orig, const Vector3D& direct){origin = orig; direction = direct;}
+
+
+    const point3& getOrigin() const {return origin;}
+    const Vector3D& getDirection() const {return direction;}
+    point3 at(double t) const {return origin + t * direction;}
+};
+# 5 "/home/mwizzard/RayTracing/main.cpp" 2
+# 1 "/usr/include/c++/15.1.1/cassert" 1 3
+# 46 "/usr/include/c++/15.1.1/cassert" 3
+# 1 "/usr/include/assert.h" 1 3 4
+# 64 "/usr/include/assert.h" 3 4
+
+# 64 "/usr/include/assert.h" 3 4
+extern "C" {
+
+
+extern void __assert_fail (const char *__assertion, const char *__file,
+      unsigned int __line, const char *__function)
+     noexcept (true) __attribute__ ((__noreturn__)) __attribute__ ((__cold__));
+
+
+extern void __assert_perror_fail (int __errnum, const char *__file,
+      unsigned int __line, const char *__function)
+     noexcept (true) __attribute__ ((__noreturn__)) __attribute__ ((__cold__));
+
+
+
+
+extern void __assert (const char *__assertion, const char *__file, int __line)
+     noexcept (true) __attribute__ ((__noreturn__)) __attribute__ ((__cold__));
+
+
+}
+# 47 "/usr/include/c++/15.1.1/cassert" 2 3
+# 6 "/home/mwizzard/RayTracing/main.cpp" 2
+
+
+
+# 8 "/home/mwizzard/RayTracing/main.cpp"
+double hit_sphere(const point3& center, double radius, const Ray& r) {
+    Vector3D oc = center - r.getOrigin();
+    auto a = dotProduct(r.getDirection(), r.getDirection());
+    auto b = -2.0 * dotProduct(r.getDirection(), oc);
+    auto c = dotProduct(oc, oc) - radius*radius;
+    auto discriminant = b*b - 4*a*c;
+    if (discriminant < 0) {
+        return -1.0;
+    } else {
+        return (-b - std::sqrt(discriminant) ) / (2.0*a);
+    }
+}
+
+color rayColor(const Ray& r) {
+
+    auto hit = hit_sphere(point3(0,0,-1), 0.5, r);
+    if (hit > 0)
+    {
+        Vector3D N = unit_vector(r.at(hit) - Vector3D(0,0,-1));
+        return 0.5*color(N.getX()+1, N.getY()+1, N.getZ()+1);
+    }
+
+    Vector3D unit_direction = unit_vector(r.getDirection());
+    auto a = 0.5*(unit_direction.getY() + 1.0);
+    return (1.0-a)*color(1.0, 1.0, 1.0) + a*color(0.5, 0.7, 1.0);
+}
 
 int main()
 {
 
-
-    int height = 256;
-    int width = 256;
-
+    auto aspect_ratio = 16.0 / 9.0;
+    int image_width = 400;
 
 
-    std::cout <<"P3\n" << width << " " << height << "\n255\n";
-    for (int j = 0; j < height; j++)
+    int image_height = int(image_width / aspect_ratio);
+    
+# 43 "/home/mwizzard/RayTracing/main.cpp" 3 4
+   (static_cast <bool> (
+# 43 "/home/mwizzard/RayTracing/main.cpp"
+   image_width > 0 && image_height > 0
+# 43 "/home/mwizzard/RayTracing/main.cpp" 3 4
+   ) ? void (0) : __assert_fail (
+# 43 "/home/mwizzard/RayTracing/main.cpp"
+   "image_width > 0 && image_height > 0"
+# 43 "/home/mwizzard/RayTracing/main.cpp" 3 4
+   , __builtin_FILE (), __builtin_LINE (), __extension__ __PRETTY_FUNCTION__))
+# 43 "/home/mwizzard/RayTracing/main.cpp"
+                                              ;
+
+
+
+    auto viewport_height = 2.0;
+    auto viewport_width = viewport_height * (double(image_width)/image_height);
+    auto focal_length = 1.0;
+    auto camera_center = point3(0, 0, 0);
+
+
+    auto viewport_u = Vector3D(viewport_width, 0, 0);
+    auto viewport_v = Vector3D(0, -viewport_height, 0);
+
+    auto pixel_delta_u = viewport_u / image_width;
+    auto pixel_delta_v = viewport_v / image_height;
+
+
+    auto viewport_upper_left = camera_center
+                             - Vector3D(0, 0, focal_length) - viewport_u/2 - viewport_v/2;
+    auto pixel00_loc = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v);
+
+
+
+
+    std::cout <<"P3\n" << image_width << " " << image_height << "\n255\n";
+    for (int j = 0; j < image_height; j++)
     {
-        std::clog << "\rScanlines remaining: " << (height - j) << ' ' << std::flush;
-        for (int i = 0; i < width; i++)
+        std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
+        for (int i = 0; i < image_width; i++)
         {
-            auto pixel_color = color(double(i)/(width-1), double(j)/(height-1), 0);
+            auto pixel_center = pixel00_loc + (i * pixel_delta_u) + (j * pixel_delta_v);
+            auto ray_direction = pixel_center - camera_center;
+            Ray r(camera_center, ray_direction);
+
+            color pixel_color = rayColor(r);
             writeColor(std::cout, pixel_color);
         }
     }
