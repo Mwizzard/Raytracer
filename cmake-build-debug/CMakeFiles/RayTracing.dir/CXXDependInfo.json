@@ -1,0 +1,18 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "GNU",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"dir-cur-bld" : "/home/mwizzard/RayTracing/cmake-build-debug",
+	"dir-cur-src" : "/home/mwizzard/RayTracing",
+	"dir-top-bld" : "/home/mwizzard/RayTracing/cmake-build-debug",
+	"dir-top-src" : "/home/mwizzard/RayTracing",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : [],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "/home/mwizzard/RayTracing/cmake-build-debug/CMakeFiles/RayTracing.dir"
+}
