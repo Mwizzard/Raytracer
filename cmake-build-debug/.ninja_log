@@ -29,3 +29,9 @@
 98	101	1746198437168220325	CMakeFiles/RayTracing.dir/main.cpp.o.modmap	24fcd85031256411
 101	787	1746198437171553717	CMakeFiles/RayTracing.dir/main.cpp.o	1c27e2b23ff480ce
 787	830	1746198437858232792	RayTracing	1cc35ede7c4af54a
+2	100	1746199554136396157	CMakeFiles/RayTracing.dir/main.cpp.o.ddi	11badd245b741d41
+100	103	1746199554233065038	CMakeFiles/RayTracing.dir/CXX.dd	24fcd85031256411
+100	103	1746199554233065038	/home/mwizzard/RayTracing/cmake-build-debug/CMakeFiles/RayTracing.dir/CXXModules.json	24fcd85031256411
+100	103	1746199554233065038	CMakeFiles/RayTracing.dir/main.cpp.o.modmap	24fcd85031256411
+103	771	1746199554236398447	CMakeFiles/RayTracing.dir/main.cpp.o	1c27e2b23ff480ce
+771	809	1746199554903080385	RayTracing	1cc35ede7c4af54a

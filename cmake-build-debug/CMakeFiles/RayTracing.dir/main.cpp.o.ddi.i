@@ -70781,9 +70781,10 @@ int main()
 
 
     std::cout <<"P3\n" << width << " " << height << "\n255\n";
-    for (int i = 0; i < height; i++)
+    for (int j = 0; j < height; j++)
     {
-        for (int j = 0; j < width; j++)
+        std::clog << "\rScanlines remaining: " << (height - j) << ' ' << std::flush;
+        for (int i = 0; i < width; i++)
         {
             auto r = double(i) / (width-1);
             auto g = double(j) / (height-1);
@@ -70797,5 +70798,6 @@ int main()
 
         }
     }
+    std::clog << "\nDone\n";
     return 0;
 }
