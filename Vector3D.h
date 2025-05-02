@@ -58,6 +58,7 @@ class Vector3D {
       return std::sqrt((this->val[0]*this->val[0]) + (this->val[1]*this->val[1]) + (this->val[2]*this->val[2]));
     }
 };
+using point3 = Vector3D;
 //Print
 std::ostream& operator<<(std::ostream &os, const Vector3D &v) {
   os << "x: "<< v.val[0] << " y: " << v.val[1] << " z: " << v.val[2];
