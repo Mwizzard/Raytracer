@@ -4,8 +4,20 @@
 #include "Ray.h"
 #include <cassert>
 
+//Function to determine if a ray hits a sphere
+bool hit_sphere(const point3& center, double radius, const Ray& r) {
+    Vector3D oc = center - r.getOrigin();
+    auto a = dotProduct(r.getDirection(), r.getDirection());
+    auto b = -2.0 * dotProduct(r.getDirection(), oc);
+    auto c = dotProduct(oc, oc) - radius*radius;
+    auto discriminant = b*b - 4*a*c;
+    return (discriminant >= 0);
+}
 //returns the color of a given ray
 color rayColor(const Ray& r) {
+    //if the ray hits the sphere, we replace the color with full red
+    if (hit_sphere(point3(0,0,-1), 0.5, r)) // Sphere is placed at  (0, 0, -1) with a radius of 0.5
+        return color(1, 0, 0);
     //For now it uses a linear interpolation to create a blend
     Vector3D unit_direction = unit_vector(r.getDirection());
     auto a = 0.5*(unit_direction.getY() + 1.0);

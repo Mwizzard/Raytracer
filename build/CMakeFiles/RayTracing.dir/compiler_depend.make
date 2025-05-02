@@ -3,6 +3,7 @@
 
 CMakeFiles/RayTracing.dir/main.cpp.o: /home/mwizzard/RayTracing/main.cpp \
   /home/mwizzard/RayTracing/Color.h \
+  /home/mwizzard/RayTracing/Ray.h \
   /home/mwizzard/RayTracing/Vector3D.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -16,6 +17,7 @@ CMakeFiles/RayTracing.dir/main.cpp.o: /home/mwizzard/RayTracing/main.cpp \
   /usr/include/asm/posix_types.h \
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm/types.h \
+  /usr/include/assert.h \
   /usr/include/bits/atomic_wide_counter.h \
   /usr/include/bits/byteswap.h \
   /usr/include/bits/cpu-set.h \
@@ -168,6 +170,7 @@ CMakeFiles/RayTracing.dir/main.cpp.o: /home/mwizzard/RayTracing/main.cpp \
   /usr/include/c++/15.1.1/bits/uses_allocator_args.h \
   /usr/include/c++/15.1.1/bits/utility.h \
   /usr/include/c++/15.1.1/bits/version.h \
+  /usr/include/c++/15.1.1/cassert \
   /usr/include/c++/15.1.1/cctype \
   /usr/include/c++/15.1.1/cerrno \
   /usr/include/c++/15.1.1/charconv \
@@ -331,6 +334,8 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 
 /usr/include/stdlib.h:
 
+/usr/include/stdc-predef.h:
+
 /usr/include/c++/15.1.1/bits/basic_ios.tcc:
 
 /usr/include/c++/15.1.1/bits/hash_bytes.h:
@@ -415,7 +420,9 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 
 /usr/include/c++/15.1.1/bits/uses_allocator_args.h:
 
-/usr/include/bits/libc-header-start.h:
+/usr/include/bits/types/__fpos64_t.h:
+
+/usr/include/c++/15.1.1/new:
 
 /usr/include/c++/15.1.1/bits/localefwd.h:
 
@@ -432,6 +439,10 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 /usr/include/bits/flt-eval-method.h:
 
 /usr/include/c++/15.1.1/bits/locale_classes.tcc:
+
+/usr/include/c++/15.1.1/bits/ostream_insert.h:
+
+/usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/time_members.h:
 
 /usr/include/bits/floatn-common.h:
 
@@ -477,7 +488,25 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 
 /usr/include/bits/stdlib-float.h:
 
+/usr/include/c++/15.1.1/cstdlib:
+
+/usr/include/c++/15.1.1/bits/concept_check.h:
+
+/usr/include/asm/posix_types_64.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/asm/posix_types.h:
+
+/usr/include/c++/15.1.1/optional:
+
 /usr/include/bits/mathcalls-helper-functions.h:
+
+/usr/include/stdio.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/c++/15.1.1/bits/allocator.h:
 
 /usr/include/bits/types/struct_timespec.h:
 
@@ -493,25 +522,27 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 
 /usr/include/bits/long-double.h:
 
-/usr/include/c++/15.1.1/cstdlib:
-
-/usr/include/c++/15.1.1/bits/concept_check.h:
-
-/usr/include/asm/posix_types_64.h:
-
-/usr/include/bits/time.h:
-
-/usr/include/asm/posix_types.h:
-
-/usr/include/c++/15.1.1/optional:
-
 /usr/include/bits/types/struct_FILE.h:
 
 /usr/include/asm/types.h:
 
+/usr/include/assert.h:
+
+/usr/include/c++/15.1.1/debug/assertions.h:
+
 /usr/include/alloca.h:
 
 /usr/include/bits/floatn.h:
+
+/home/mwizzard/RayTracing/Vector3D.h:
+
+/usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/error_constants.h:
+
+/usr/include/bits/stdint-least.h:
+
+/usr/include/c++/15.1.1/bits/iterator_concepts.h:
+
+/usr/include/c++/15.1.1/type_traits:
 
 /usr/include/bits/types/__sigset_t.h:
 
@@ -525,17 +556,7 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 
 /usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/messages_members.h:
 
-/usr/include/stdc-predef.h:
-
-/usr/include/bits/stdint-least.h:
-
-/usr/include/c++/15.1.1/bits/iterator_concepts.h:
-
-/usr/include/c++/15.1.1/type_traits:
-
-/home/mwizzard/RayTracing/Vector3D.h:
-
-/usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/error_constants.h:
+/usr/include/bits/libc-header-start.h:
 
 /usr/include/bits/math-vector.h:
 
@@ -561,15 +582,9 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 
 /usr/include/c++/15.1.1/cwchar:
 
-/usr/include/bits/types/__fpos64_t.h:
-
-/usr/include/c++/15.1.1/x86_64-pc-linux-gnu/bits/time_members.h:
-
-/usr/include/c++/15.1.1/bits/ostream_insert.h:
-
-/usr/include/c++/15.1.1/new:
-
 /usr/include/c++/15.1.1/bits/ios_base.h:
+
+/usr/include/c++/15.1.1/cassert:
 
 /usr/include/c++/15.1.1/bits/max_size_type.h:
 
@@ -663,6 +678,8 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 
 /usr/include/linux/stddef.h:
 
+/home/mwizzard/RayTracing/Ray.h:
+
 /usr/include/c++/15.1.1/bits/ranges_algobase.h:
 
 /usr/include/c++/15.1.1/bits/ranges_base.h:
@@ -755,8 +772,6 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 
 /usr/include/c++/15.1.1/cstdio:
 
-/usr/include/c++/15.1.1/debug/assertions.h:
-
 /usr/include/c++/15.1.1/ext/alloc_traits.h:
 
 /usr/include/c++/15.1.1/initializer_list:
@@ -813,6 +828,12 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 
 /usr/include/libintl.h:
 
+/usr/include/stdint.h:
+
+/usr/include/c++/15.1.1/bits/stl_algo.h:
+
+/usr/include/endian.h:
+
 /usr/include/errno.h:
 
 /usr/include/features-time64.h:
@@ -846,15 +867,3 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 /usr/include/bits/fp-fast.h:
 
 /usr/include/sched.h:
-
-/usr/include/c++/15.1.1/bits/stl_algo.h:
-
-/usr/include/endian.h:
-
-/usr/include/stdint.h:
-
-/usr/include/bits/wordsize.h:
-
-/usr/include/c++/15.1.1/bits/allocator.h:
-
-/usr/include/stdio.h:
