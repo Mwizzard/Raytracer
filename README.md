@@ -3,18 +3,16 @@ this project contains a simple ray tracer made using the tutorial "RayTracingInO
 
 # Building project
 
-I am using c-make to build the project.
-
+C-make is used to build the project. To build, simply run:
 ```bash
   cmake --build build
 ```
-is used to build the project.
 
 To execute the program, you need to execute this command from the root of the project
 ```bash
   build/RayTracing > image.ppm
 ```
-This redirects the output to a .ppm file
+This redirects the output to a .ppm file wich is the format used for the output of the program because of the simplicity
 
 # Note 
 This project was made to learn the basics of ray-tracing and is probably not bug-free
