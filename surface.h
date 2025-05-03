@@ -37,7 +37,7 @@ public:
     //Default destructor
     virtual ~hittable() = default;
     //Abstract constructor
-    virtual bool hit(const Ray& r, double ray_tmin, double ray_tmax, hitSurfaceRecord& rec) const = 0;
+    virtual bool hit(const Ray& r, Interval ray_t, hitSurfaceRecord& rec) const = 0;
 };
 
 #endif //SURFACE_H

@@ -13,7 +13,7 @@ class sphere : public hittable {
       double radius;
     public:
       sphere(const point3& c, const double& r) : center(c), radius(std::fmax(0,r)) {}
-      virtual bool hit(const Ray& r, double ray_tmin, double ray_tmax, hitSurfaceRecord& rec) const override {
+      virtual bool hit(const Ray& r, Interval ray_t, hitSurfaceRecord& rec) const override {
 		Vector3D oc = center - r.getOrigin();
         auto a = r.getDirection().lengthSquared();
         auto half_b = dotProduct(r.getDirection(), oc);
@@ -27,10 +27,10 @@ class sphere : public hittable {
 
         auto root = (half_b - sqrtd) / a;
 
-        if (root <= ray_tmin || ray_tmax <= root) {
+        if (!ray_t.surrounds(root)) {
             root = (half_b + sqrtd) / a;
 
-            if (root <= ray_tmin || ray_tmax <= root)
+            if (!ray_t.surrounds(root))
                 return false;
         }
         rec.t = root;

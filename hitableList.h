@@ -37,14 +37,14 @@ class HitableList : public hittable{
       }
 
 
-      virtual bool hit(const Ray& r, double t_min, double t_max, hitSurfaceRecord& rec) const override {
+      virtual bool hit(const Ray& r, Interval ray_t, hitSurfaceRecord& rec) const override {
           hitSurfaceRecord tempRec;
           bool hitAnything = false;
-          auto closestSoFar = t_max;
+          auto closestSoFar = ray_t.getMax();
 
           //For each object in the list, we call it's own hit method, and update the hitAnything accordingly
           for (const auto& object : objects) {
-              if (object->hit(r, t_min, closestSoFar, tempRec)) {
+              if (object->hit(r, Interval(ray_t.getMin(), closestSoFar), tempRec)) {
                   hitAnything = true;
                   closestSoFar = tempRec.t;
                   rec = tempRec;

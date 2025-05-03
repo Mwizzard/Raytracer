@@ -3,7 +3,9 @@
 
 CMakeFiles/RayTracing.dir/main.cpp.o
  /home/mwizzard/RayTracing/main.cpp
+ /home/mwizzard/RayTracing/Camera.h
  /home/mwizzard/RayTracing/Color.h
+ /home/mwizzard/RayTracing/Interval.h
  /home/mwizzard/RayTracing/Ray.h
  /home/mwizzard/RayTracing/Utils.h
  /home/mwizzard/RayTracing/Vector3D.h

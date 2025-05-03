@@ -228,10 +228,11 @@ CMakeFiles/RayTracing.dir/main.cpp.o: /home/mwizzard/RayTracing/main.cpp \
  /usr/include/c++/15.1.1/pstl/glue_memory_defs.h \
  /usr/include/c++/15.1.1/pstl/execution_defs.h \
  /home/mwizzard/RayTracing/Color.h /home/mwizzard/RayTracing/Vector3D.h \
- /home/mwizzard/RayTracing/Ray.h /home/mwizzard/RayTracing/surface.h \
+ /home/mwizzard/RayTracing/Interval.h /home/mwizzard/RayTracing/Ray.h \
+ /home/mwizzard/RayTracing/surface.h \
  /home/mwizzard/RayTracing/hitableList.h /usr/include/c++/15.1.1/vector \
  /usr/include/c++/15.1.1/bits/stl_vector.h \
  /usr/include/c++/15.1.1/bits/stl_bvector.h \
  /usr/include/c++/15.1.1/bits/vector.tcc \
- /home/mwizzard/RayTracing/sphere.h /usr/include/c++/15.1.1/cassert \
- /usr/include/assert.h
+ /home/mwizzard/RayTracing/sphere.h /home/mwizzard/RayTracing/Camera.h \
+ /usr/include/c++/15.1.1/cassert /usr/include/assert.h
