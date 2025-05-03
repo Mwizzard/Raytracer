@@ -16,6 +16,7 @@ class Camera {
           Vector3D pixel_delta_u;  // Offset to pixel to the right
           Vector3D pixel_delta_v;  // Offset to pixel below
 
+
           void initialize() {
               pixel_samples_scale = 1.0 / antialiasingSamples;
               // Calculate the image height, and ensure that it's at least 1.
@@ -41,11 +42,15 @@ class Camera {
           }
 
           //returns the color of a given ray
-          color rayColor(const Ray& r, const hittable& world) {
+          color rayColor(const Ray& r, int depth, const hittable& world) {
+              if (depth < 1)
+                  return color(0, 0, 0);
 
-           hitSurfaceRecord rec;
-           if (world.hit(r, Interval(0, infinity), rec)) {
-               return 0.5 * (rec.normal + color(1,1,1));
+              hitSurfaceRecord rec;
+
+              if (world.hit(r, Interval(0.001, infinity), rec)) {
+               Vector3D direction = random_on_hemisphere(rec.normal);
+               return 0.5 * rayColor(Ray(rec.p, direction), depth-1, world);
            }
            //For now it uses a linear interpolation to create a blend
            Vector3D unit_direction = unit_vector(r.getDirection());
@@ -57,6 +62,8 @@ class Camera {
             double aspect_ratio = 1.0;  // Ratio of image width over height
             int image_width  = 100;  // Rendered image width in pixel count
             int antialiasingSamples = 10;
+            int max_depth = 10;   //max ray bounces
+
             void render(const hittable& world) {
 
                 initialize();
@@ -70,7 +77,7 @@ class Camera {
                         color pixel_color(0,0,0);
                         for (int sample = 0; sample < antialiasingSamples; sample++) {
                             Ray r = get_ray(i, j);
-                            pixel_color += rayColor(r, world);
+                            pixel_color += rayColor(r, max_depth, world);
                         }
                         writeColor(std::cout, pixel_samples_scale * pixel_color);
 

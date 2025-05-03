@@ -59,6 +59,13 @@ class Vector3D {
     double lengthSquared() const{
       return pow(val[0],2) + pow(val[1],2) +  pow(val[2],2);
     }
+    static Vector3D random() {
+      return Vector3D(randomDouble(), randomDouble(), randomDouble());
+    }
+
+    static Vector3D random(double min, double max) {
+      return Vector3D(randomDouble(min,max), randomDouble(min,max), randomDouble(min,max));
+    }
 };
 using point3 = Vector3D;
 //Print
@@ -107,5 +114,20 @@ inline Vector3D cross(const Vector3D& u, const Vector3D& v) {
 inline Vector3D unit_vector(const Vector3D& v) {
   return v / v.length();
 }
-
+inline Vector3D random_unit_vector()
+{
+  while (true) {
+    auto p = Vector3D::random(-1,1);
+    auto lensquared = p.lengthSquared();
+    if (1e-160 < lensquared && lensquared <= 1) //floating point abstraction leak
+      return p / sqrt(lensquared);
+  }
+}
+inline Vector3D random_on_hemisphere(const Vector3D& normal) {
+  Vector3D on_unit_sphere = random_unit_vector();
+  if (dotProduct(on_unit_sphere, normal) > 0.0) // In the same hemisphere as the normal
+    return on_unit_sphere;
+  else
+    return on_unit_sphere *-1;
+}
 #endif //INC_3DVECTOR_H
