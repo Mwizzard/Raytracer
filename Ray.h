@@ -1,9 +1,10 @@
 //
 // Created by mwizzard on 5/2/25.
 //
-#include "Vector3D.h"
+
 #ifndef RAY_H
 #define RAY_H
+#include "Vector3D.h"
 class Ray {
 private:
     point3 origin;
@@ -11,7 +12,7 @@ private:
   public:
     //default constructor
     Ray(){};
-    //Specific constructor
+    //Specific constructors
     Ray(const Vector3D& orig, const Vector3D& direct){origin = orig; direction = direct;}
 
     //getters

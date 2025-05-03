@@ -1,30 +1,28 @@
-#include <iostream>
-#include "Color.h"
-#include "Vector3D.h"
-#include "Ray.h"
+#include "Utils.h"
+#include "surface.h"
+#include "hitableList.h"
+#include "sphere.h"
 #include <cassert>
 
 //Function to determine if a ray hits a sphere
 double hit_sphere(const point3& center, double radius, const Ray& r) {
     Vector3D oc = center - r.getOrigin();
-    auto a = dotProduct(r.getDirection(), r.getDirection());
-    auto b = -2.0 * dotProduct(r.getDirection(), oc);
-    auto c = dotProduct(oc, oc) - radius*radius;
-    auto discriminant = b*b - 4*a*c;
+    auto a = r.getDirection().lengthSquared();
+    auto h = dotProduct(r.getDirection(), oc);
+    auto c = oc.lengthSquared() - radius*radius;
+    auto discriminant = h*h - a*c;
     if (discriminant < 0) {
         return -1.0;
     } else {
-        return (-b - std::sqrt(discriminant) ) / (2.0*a);
+        return (h - std::sqrt(discriminant)) / a;
     }
 }
 //returns the color of a given ray
-color rayColor(const Ray& r) {
-    //if the ray hits the sphere, we replace the color with full red
-    auto hit = hit_sphere(point3(0,0,-1), 0.5, r);
-    if (hit > 0)
-    {
-        Vector3D N = unit_vector(r.at(hit) - Vector3D(0,0,-1));
-        return 0.5*color(N.getX()+1, N.getY()+1, N.getZ()+1);
+color rayColor(const Ray& r, const hittable& world) {
+
+    hitSurfaceRecord rec;
+    if (world.hit(r, 0, infinity, rec)) {
+        return 0.5 * (rec.normal + color(1,1,1));
     }
     //For now it uses a linear interpolation to create a blend
     Vector3D unit_direction = unit_vector(r.getDirection());
@@ -41,6 +39,13 @@ int main()
     // Calculate the image height, and ensure that it's at least 1.
     int image_height = int(image_width / aspect_ratio);
     assert(image_width > 0 && image_height > 0);
+
+    // World
+
+    HitableList world;
+
+    world.add(std::make_shared<sphere>(point3(0,0,-1), 0.5));
+    world.add(std::make_shared<sphere>(point3(0,-100.5,-1), 100));
 
     // Camera
 
@@ -74,7 +79,7 @@ int main()
             auto ray_direction = pixel_center - camera_center;
             Ray r(camera_center, ray_direction);
 
-            color pixel_color = rayColor(r);
+            color pixel_color = rayColor(r, world);
             writeColor(std::cout, pixel_color);
         }
     }

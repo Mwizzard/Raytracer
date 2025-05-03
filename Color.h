@@ -4,9 +4,9 @@
 
 #ifndef COLOR_H
 #define COLOR_H
+#include "Utils.h"
 #include "Vector3D.h"
 
-#include <iostream>
 using color = Vector3D;
 
 void writeColor(std::ostream& os, const color& pixelColor) {

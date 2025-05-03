@@ -1,12 +1,11 @@
 //
 // Created by mwizzard on 5/2/25.
 //
-#include <cmath>
-#include <iostream>
+
 
 #ifndef INC_3DVECTOR_H
 #define INC_3DVECTOR_H
-
+#include "Utils.h"
 class Vector3D {
   public:
     double val[3];
@@ -57,6 +56,9 @@ class Vector3D {
     double length() const {
       return std::sqrt((this->val[0]*this->val[0]) + (this->val[1]*this->val[1]) + (this->val[2]*this->val[2]));
     }
+    double lengthSquared() const{
+      return pow(val[0],2) + pow(val[1],2) +  pow(val[2],2);
+    }
 };
 using point3 = Vector3D;
 //Print
@@ -105,4 +107,5 @@ inline Vector3D cross(const Vector3D& u, const Vector3D& v) {
 inline Vector3D unit_vector(const Vector3D& v) {
   return v / v.length();
 }
+
 #endif //INC_3DVECTOR_H
