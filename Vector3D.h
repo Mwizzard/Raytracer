@@ -132,11 +132,27 @@ inline Vector3D random_unit_vector()
 inline Vector3D reflect(const Vector3D& v, const Vector3D& u) {
   return v - 2 * dotProduct(v,u) * u;
 }
+
+inline Vector3D refract(const Vector3D& uv, const Vector3D& n, double etai_over_etat) {
+  auto cos_theta = std::fmin(dotProduct((uv)*-1, n), 1.0);
+
+  Vector3D r_out_perp =  etai_over_etat * (uv + cos_theta*n);
+  Vector3D r_out_parallel = -std::sqrt(std::fabs(1.0 - r_out_perp.lengthSquared())) * n;
+
+  return r_out_perp + r_out_parallel;
+}
 inline Vector3D random_on_hemisphere(const Vector3D& normal) {
   Vector3D on_unit_sphere = random_unit_vector();
   if (dotProduct(on_unit_sphere, normal) > 0.0) // In the same hemisphere as the normal
     return on_unit_sphere;
   else
     return on_unit_sphere *-1;
+}
+inline Vector3D random_in_unit_disk() {
+  while (true) {
+    auto p = Vector3D(randomDouble(-1,1), randomDouble(-1,1), 0);
+    if (p.lengthSquared() < 1)
+      return p;
+  }
 }
 #endif //INC_3DVECTOR_H

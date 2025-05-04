@@ -14,8 +14,11 @@ class Camera {
           double pixel_samples_scale;  // Color scale factor for a sum of pixel samples
           point3 center;         // Camera center
           point3 pixel00_loc;    // Location of pixel 0, 0
+          Vector3D u, v, w;  //Camera frame basis vectors
           Vector3D pixel_delta_u;  // Offset to pixel to the right
           Vector3D pixel_delta_v;  // Offset to pixel below
+          Vector3D defocus_disk_u;
+          Vector3D defocus_disk_v;
 
 
           void initialize() {
@@ -24,22 +27,32 @@ class Camera {
               image_height = int(image_width / aspect_ratio);
               assert(image_width > 0 && image_height > 0);
 
-              auto viewport_height = 2.0;
+              auto focal_length = (lookfrom - lookat).length();
+              auto theta = degrees_to_radians(vfov);
+              auto h = std::tan(theta/2);
+              auto viewport_height = 2 * h * focus_dist;
               auto viewport_width = viewport_height * (double(image_width)/image_height);
-              auto focal_length = 1.0;
-              center = point3(0, 0, 0);
+              center = lookfrom;
+
+              //Compute cam frame base vectors
+              w = unit_vector(lookfrom - lookat);
+              u = unit_vector(cross(vup, w));
+              v = cross(w, u);
+
 
               //Compute the vectors and delta vectors across the screen
-              auto viewport_u = Vector3D(viewport_width, 0, 0);
-              auto viewport_v = Vector3D(0, -viewport_height, 0);
+              Vector3D viewport_u = viewport_width * u;    // Vector across viewport horizontal edge
+              Vector3D viewport_v = viewport_height * (v*-1);  // Vector down viewport vertical edge
 
               pixel_delta_u = viewport_u / image_width;
               pixel_delta_v = viewport_v / image_height;
 
               // Compute the location of the upper left pixel (Start of the rendering)
-              auto viewport_upper_left = center
-                                       - Vector3D(0, 0, focal_length) - viewport_u/2 - viewport_v/2;
+              auto viewport_upper_left = center - (focus_dist * w) - viewport_u/2 - viewport_v/2;
               pixel00_loc = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v);
+              auto defocus_radius = focus_dist * std::tan(degrees_to_radians(defocus_angle / 2));
+              defocus_disk_u = u * defocus_radius;
+              defocus_disk_v = v * defocus_radius;
           }
 
           //returns the color of a given ray
@@ -67,6 +80,12 @@ class Camera {
             int image_width  = 100;  // Rendered image width in pixel count
             int antialiasingSamples = 10;
             int max_depth = 10;   //max ray bounces
+            double defocus_angle = 0;  //Variation angle of rays through each pixel
+            double focus_dist = 10;    //Distance from camera lookfrom point to plane of perfect focus
+            double vfov = 90;  // Vertical field of view
+            point3 lookfrom = point3(0,0,0); //Point camera is looking from
+            point3 lookat = point3(0,0,-1); //Point camera is looking at
+            Vector3D vup = Vector3D(0,1,0);
 
             void render(const hittable& world) {
 
@@ -99,7 +118,7 @@ class Camera {
                                   + ((i + offset.getX()) * pixel_delta_u)
                                   + ((j + offset.getY()) * pixel_delta_v);
 
-                auto ray_origin = center;
+                auto ray_origin = (defocus_angle <= 0) ? center : defocusDiskSample();
                 auto ray_direction = pixel_sample - ray_origin;
 
                 return Ray(ray_origin, ray_direction);
@@ -107,6 +126,10 @@ class Camera {
 
             Vector3D sample_square() const {
                 return Vector3D(randomDouble() - 0.5, randomDouble() - 0.5, 0);
+            }
+            point3 defocusDiskSample() const {
+                        auto p = random_in_unit_disk();
+                        return center + (p[0] * defocus_disk_u) + (p[1] * defocus_disk_v);
             }
 
 };
