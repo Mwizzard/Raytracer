@@ -66,6 +66,12 @@ class Vector3D {
     static Vector3D random(double min, double max) {
       return Vector3D(randomDouble(min,max), randomDouble(min,max), randomDouble(min,max));
     }
+
+    bool near_zero() const {
+        //returns true if the vector is close to zero.
+        auto epsilon = 1e-8;
+        return (std::fabs(val[0]) < epsilon) && (std::fabs(val[1]) < epsilon) && (std::fabs(val[2]) < epsilon);
+      }
 };
 using point3 = Vector3D;
 //Print
@@ -122,6 +128,9 @@ inline Vector3D random_unit_vector()
     if (1e-160 < lensquared && lensquared <= 1) //floating point abstraction leak
       return p / sqrt(lensquared);
   }
+}
+inline Vector3D reflect(const Vector3D& v, const Vector3D& u) {
+  return v - 2 * dotProduct(v,u) * u;
 }
 inline Vector3D random_on_hemisphere(const Vector3D& normal) {
   Vector3D on_unit_sphere = random_unit_vector();

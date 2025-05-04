@@ -11,8 +11,14 @@ class sphere : public hittable {
     private:
       point3 center;
       double radius;
+      std::shared_ptr<material> mats;
     public:
-      sphere(const point3& c, const double& r) : center(c), radius(std::fmax(0,r)) {}
+      sphere(const point3& c, double rad, std::shared_ptr<material> mat)
+      {
+          center = c;
+          radius = std::fmax(0, rad);
+          mats = mat;
+      }
       virtual bool hit(const Ray& r, Interval ray_t, hitSurfaceRecord& rec) const override {
 		Vector3D oc = center - r.getOrigin();
         auto a = r.getDirection().lengthSquared();
@@ -36,6 +42,7 @@ class sphere : public hittable {
         rec.t = root;
         rec.p = r.at(rec.t);
         rec.normal = (rec.p - center) / radius;
+        rec.mater = mats;
 
         Vector3D outward_normal = (rec.p - center) / radius;
         rec.setFaceNormal(r, outward_normal);

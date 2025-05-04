@@ -10,6 +10,7 @@ CMakeFiles/RayTracing.dir/main.cpp.o
  /home/mwizzard/RayTracing/Utils.h
  /home/mwizzard/RayTracing/Vector3D.h
  /home/mwizzard/RayTracing/hitableList.h
+ /home/mwizzard/RayTracing/material.h
  /home/mwizzard/RayTracing/sphere.h
  /home/mwizzard/RayTracing/surface.h
  /usr/include/alloca.h

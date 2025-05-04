@@ -5,13 +5,14 @@
 #ifndef SURFACE_H
 #define SURFACE_H
 #include "Utils.h"
-
+class material;
 
 class hitSurfaceRecord {
   public:
     point3 p;
     Vector3D normal;
     double t{};
+	std::shared_ptr<material> mater;
 
     bool front_face{};
 

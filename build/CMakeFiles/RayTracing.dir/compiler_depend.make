@@ -9,6 +9,7 @@ CMakeFiles/RayTracing.dir/main.cpp.o: /home/mwizzard/RayTracing/main.cpp \
   /home/mwizzard/RayTracing/Utils.h \
   /home/mwizzard/RayTracing/Vector3D.h \
   /home/mwizzard/RayTracing/hitableList.h \
+  /home/mwizzard/RayTracing/material.h \
   /home/mwizzard/RayTracing/sphere.h \
   /home/mwizzard/RayTracing/surface.h \
   /usr/include/alloca.h \
@@ -555,6 +556,10 @@ RayTracing: /usr/lib/Scrt1.o \
 
 /usr/include/bits/thread-shared-types.h:
 
+/usr/include/c++/15.1.1/tr1/bessel_function.tcc:
+
+/usr/include/bits/types/__mbstate_t.h:
+
 /usr/include/c++/15.1.1/tr1/legendre_function.tcc:
 
 /usr/include/c++/15.1.1/concepts:
@@ -577,19 +582,9 @@ RayTracing: /usr/lib/Scrt1.o \
 
 /usr/include/bits/setjmp.h:
 
-/usr/include/bits/mathcalls-helper-functions.h:
+/usr/include/bits/select.h:
 
-/usr/include/bits/typesizes.h:
-
-/usr/include/c++/15.1.1/vector:
-
-/usr/include/bits/posix2_lim.h:
-
-/usr/include/c++/15.1.1/bits/monostate.h:
-
-/usr/include/bits/cpu-set.h:
-
-/usr/include/c++/15.1.1/bits/stl_bvector.h:
+/usr/include/c++/15.1.1/cwchar:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.1.1/crtendS.o:
 
@@ -600,12 +595,6 @@ RayTracing: /usr/lib/Scrt1.o \
 /usr/include/bits/mathcalls-macros.h:
 
 /usr/include/c++/15.1.1/cstdlib:
-
-/usr/include/bits/timex.h:
-
-/usr/include/c++/15.1.1/bits/codecvt.h:
-
-/usr/include/c++/15.1.1/bits/nested_exception.h:
 
 /usr/include/bits/stdint-intn.h:
 
@@ -647,6 +636,26 @@ RayTracing: /usr/lib/Scrt1.o \
 
 /usr/include/bits/types/__sigset_t.h:
 
+/usr/include/asm-generic/errno.h:
+
+/usr/include/bits/fp-logb.h:
+
+/usr/include/c++/15.1.1/bits/stl_raw_storage_iter.h:
+
+/usr/include/bits/mathcalls-helper-functions.h:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/c++/15.1.1/vector:
+
+/usr/include/bits/posix2_lim.h:
+
+/usr/include/c++/15.1.1/bits/monostate.h:
+
+/usr/include/bits/cpu-set.h:
+
+/usr/include/c++/15.1.1/bits/stl_bvector.h:
+
 /usr/include/sys/single_threaded.h:
 
 /home/mwizzard/RayTracing/Camera.h:
@@ -670,12 +679,6 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 /usr/include/bits/long-double.h:
 
 /usr/include/bits/endian.h:
-
-/usr/include/c++/15.1.1/bits/allocated_ptr.h:
-
-/usr/include/bits/byteswap.h:
-
-/usr/include/c++/15.1.1/bits/shared_ptr.h:
 
 /usr/include/c++/15.1.1/bits/locale_facets_nonio.h:
 
@@ -723,6 +726,14 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 
 /usr/include/c++/15.1.1/bits/refwrap.h:
 
+/usr/include/c++/15.1.1/bits/allocated_ptr.h:
+
+/usr/include/c++/15.1.1/bits/shared_ptr.h:
+
+/usr/include/bits/byteswap.h:
+
+/home/mwizzard/RayTracing/material.h:
+
 /usr/include/asm/types.h:
 
 /usr/include/assert.h:
@@ -732,12 +743,6 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 /usr/include/c++/15.1.1/bits/shared_ptr_base.h:
 
 /usr/include/alloca.h:
-
-/usr/include/asm-generic/errno.h:
-
-/usr/include/bits/fp-logb.h:
-
-/usr/include/c++/15.1.1/bits/stl_raw_storage_iter.h:
 
 /usr/include/libintl.h:
 
@@ -831,9 +836,11 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 
 /usr/include/c++/15.1.1/system_error:
 
-/usr/include/bits/select.h:
+/usr/include/bits/timex.h:
 
-/usr/include/c++/15.1.1/cwchar:
+/usr/include/c++/15.1.1/bits/codecvt.h:
+
+/usr/include/c++/15.1.1/bits/nested_exception.h:
 
 /usr/include/asm/posix_types_64.h:
 
@@ -982,10 +989,6 @@ CMakeFiles/RayTracing.dir/main.cpp.o:
 /usr/include/c++/15.1.1/bits/uses_allocator.h:
 
 /usr/include/c++/15.1.1/bits/utility.h:
-
-/usr/include/bits/types/__mbstate_t.h:
-
-/usr/include/c++/15.1.1/tr1/bessel_function.tcc:
 
 /usr/include/c++/15.1.1/bits/vector.tcc:
 

@@ -5,6 +5,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 #include "surface.h"
+#include "material.h"
 #include <cassert>
 
 class Camera {
@@ -49,8 +50,11 @@ class Camera {
               hitSurfaceRecord rec;
 
               if (world.hit(r, Interval(0.001, infinity), rec)) {
-               Vector3D direction = random_on_hemisphere(rec.normal);
-               return 0.5 * rayColor(Ray(rec.p, direction), depth-1, world);
+                  Ray scattered;
+                  color attenuation;
+                  if (rec.mater->scatter(r, rec, attenuation, scattered))
+                      return attenuation * rayColor(scattered, depth-1, world);
+                  return color(0,0,0);
            }
            //For now it uses a linear interpolation to create a blend
            Vector3D unit_direction = unit_vector(r.getDirection());

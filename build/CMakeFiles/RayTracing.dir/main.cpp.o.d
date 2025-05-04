@@ -235,4 +235,5 @@ CMakeFiles/RayTracing.dir/main.cpp.o: /home/mwizzard/RayTracing/main.cpp \
  /usr/include/c++/15.1.1/bits/stl_bvector.h \
  /usr/include/c++/15.1.1/bits/vector.tcc \
  /home/mwizzard/RayTracing/sphere.h /home/mwizzard/RayTracing/Camera.h \
- /usr/include/c++/15.1.1/cassert /usr/include/assert.h
+ /home/mwizzard/RayTracing/material.h /usr/include/c++/15.1.1/cassert \
+ /usr/include/assert.h
